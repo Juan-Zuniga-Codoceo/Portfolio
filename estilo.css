@@ -703,3 +703,7 @@ footer .arriba{
         width: 100%;
     }
 }
+
+button a {
+    color: #fff; /* Cambia el color del texto a blanco (#fff) */
+}
