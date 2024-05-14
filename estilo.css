@@ -225,12 +225,36 @@ html{
     text-align: center;
     padding: 20px 0;
 }
-.skills .fila{
+.skills .fila {
     display: flex;
+    justify-content: center; /* Centra las habilidades técnicas en el contenedor */
+    flex-wrap: wrap; /* Permite que las habilidades técnicas se envuelvan a la siguiente línea si no hay suficiente espacio */
 }
-.skills .fila .col{
-    width: 50%;
-    padding: 0 20px;
+
+.skills .fila .col {
+    display: flex; /* Alinea las habilidades técnicas horizontalmente */
+    flex-wrap: wrap; /* Permite que las habilidades técnicas se envuelvan a la siguiente línea si no hay suficiente espacio */
+    justify-content: center; /* Centra las habilidades técnicas en el contenedor */
+}
+
+.skills .fila .col .skill{
+    width: 100px;
+    height: 100px;
+    background-color: #252a2e;
+    border-radius: 10px;
+    margin: 0 15px 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+.skills .fila .col .skill:hover{
+    background-color: #1cb698;
+}
+.skills .fila .col .skill i{
+    font-size: 30px;
+    margin-bottom: 10px;
 }
 .skills .fila .col h3{
     font-size: 28px;
