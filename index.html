@@ -1,412 +1,417 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="img/bolsa-para-la-escuela.png" type="image/x-icon">
-    <title>Juan Zúñiga</title>
-    <link rel="stylesheet" href="estilo.css">
+    <title>Juan Zúñiga C. | FullStack JS Developer</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        zinc: {
+                            850: '#1f2025',
+                            900: '#18181b',
+                            950: '#09090b',
+                        },
+                        emerald: {
+                            400: '#34d399',
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #09090b;
+            color: #f4f4f5;
+        }
+
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #34d399;
+            width: 0;
+            animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: #34d399;
+            }
+        }
+
+        .bento-card {
+            background: rgba(39, 39, 42, 0.4);
+            border: 1px solid rgba(63, 63, 70, 0.5);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(52, 211, 153, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(52, 211, 153, 0.15);
+        }
+    </style>
 </head>
 
-<body>
-    <!--MENU ENCABEZADO-->
-    <div class="contenedor-header">
-        <header>
-            <div class="logo">
-                <a href="#">Juan Zúñiga</a>
-            </div>
-            <nav id="nav">
-                <ul>
-                    <li><a href="#inicio" onclick="seleccionar()">INICIO</a></li>
-                    <li><a href="#sobremi" onclick="seleccionar()">SOBRE MI</a></li>
-                    <li><a href="#skills" onclick="seleccionar()">SKILLS</a></li>
-                    <li><a href="#curriculum" onclick="seleccionar()">CURRICULUM</a></li>
-                    <li><a href="#portfolio" onclick="seleccionar()">PORTFOLIO</a></li>
-                    <li><a href="#contacto" onclick="seleccionar()">CONTACTO</a></li>
-                </ul>
-            </nav>
-            <div class="nav-responsive" onclick="mostrarOcultarMenu()">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-        </header>
-    </div>
-    <br>
-    <br>
-    <!-- SECCION INICIO -->
+<body class="antialiased selection:bg-emerald-500 selection:text-white flex flex-col min-h-screen">
 
-    <section id="inicio" class="inicio">
-        <div class="contenido-banner">
-            <div class="contenedor-img">
-                <img src="img/hero.png" alt="">
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-xl font-bold tracking-tighter text-white">JZ<span
+                    class="text-emerald-400">.</span></a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-zinc-400">
+                <a href="#hero" class="hover:text-emerald-400 transition-colors">Inicio</a>
+                <a href="#about" class="hover:text-emerald-400 transition-colors">Sobre Mí</a>
+                <a href="#projects" class="hover:text-emerald-400 transition-colors">Proyectos</a>
+                <a href="#contact" class="hover:text-emerald-400 transition-colors">Contacto</a>
             </div>
-            <h1>JUAN ZÚÑIGA</h1>
-            <h2>Desarrollador web</h2>
-            <div class="redes">
-                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://twitter.com/JZuniga167" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                <a href="https://www.linkedin.com/in/juan-alfredo-zuniga-codoceo/" target="_blank"><i
-                        class="fa-brands fa-linkedin-in"></i></a>
-                <a href="https://github.com/Juan-Zuniga-Codoceo" target="_blank"><i class="fa-brands fa-github"></i></a>
-                <a href="#"><i class="fa-solid fa-rss"></i></a>
+            <!-- Mobile Menu -->
+            <button class="md:hidden text-zinc-400 hover:text-white" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="md:hidden hidden bg-zinc-900 border-b border-zinc-800">
+            <div class="px-4 py-4 flex flex-col space-y-4">
+                <a href="#hero" class="text-zinc-400 hover:text-emerald-400 text-sm font-medium">Inicio</a>
+                <a href="#about" class="text-zinc-400 hover:text-emerald-400 text-sm font-medium">Sobre Mí</a>
+                <a href="#projects" class="text-zinc-400 hover:text-emerald-400 text-sm font-medium">Proyectos</a>
+                <a href="#contact" class="text-zinc-400 hover:text-emerald-400 text-sm font-medium">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HEADER / HERO -->
+    <section id="hero"
+        class="pt-32 pb-20 md:pt-48 md:pb-32 px-6 flex-grow flex items-center bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-zinc-900 via-zinc-950 to-zinc-950">
+        <div class="max-w-6xl mx-auto w-full relative z-10">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
+                    Juan Zúñiga C.
+                </h1>
+
+                <div class="inline-block mb-6 md:mb-8 max-w-full overflow-hidden">
+                    <h2 class="text-xl md:text-[1.7rem] text-emerald-400 font-medium typewriter pr-2 pb-1">
+                        FullStack JS Developer | Fundador y CEO de SynapseDev.
+                    </h2>
+                </div>
+
+                <p class="text-lg md:text-xl text-zinc-400 mb-10 leading-relaxed max-w-3xl">
+                    Diseño y construyo plataformas SaaS y soluciones web escalables. Combino una arquitectura técnica
+                    robusta con visión estratégica de negocios para resolver cuellos de botella reales.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#projects"
+                        class="inline-flex items-center justify-center px-8 py-4 text-sm font-semibold text-zinc-950 bg-emerald-400 rounded-lg hover:bg-emerald-300 transition-all duration-300 shadow-[0_0_20px_rgba(52,211,153,0.3)] hover:shadow-[0_0_30px_rgba(52,211,153,0.5)]">
+                        Ver mis SaaS <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#contact"
+                        class="inline-flex items-center justify-center px-8 py-4 text-sm font-medium text-white border border-zinc-700 rounded-lg hover:bg-zinc-800 hover:border-zinc-500 transition-all duration-300">
+                        Hablemos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Abstract Decoration -->
+        <div
+            class="absolute right-0 top-32 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none hidden lg:block">
+        </div>
+    </section>
+
+    <!-- 2. SECCIÓN 'SOBRE MÍ' -->
+    <section id="about" class="py-24 px-6 bg-zinc-900 border-t border-b border-zinc-800/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 flex items-center">
+                        <span class="text-emerald-400 mr-3 text-2xl">01.</span> Sobre Mí
+                    </h2>
+                    <p class="text-zinc-400 text-lg leading-relaxed mb-6">
+                        Soy desarrollador web FullStack especializado en el ecosistema JavaScript (<strong
+                            class="text-emerald-400 font-medium">React, Vue.js, Node.js</strong>) y entornos Linux. Mi
+                        formación en Ingeniería Comercial y mi experiencia previa en el sector bancario me permiten
+                        abordar el desarrollo de software con un enfoque único: no solo escribo código, entiendo la
+                        rentabilidad, la optimización de procesos y la necesidad del cliente final.
+                    </p>
+                    <p class="text-zinc-400 text-lg leading-relaxed">
+                        Actualmente dirijo <strong class="text-white font-medium">SynapseDev</strong>, impulsando
+                        productos digitales.
+                    </p>
+                </div>
+
+                <div class="bg-zinc-950/50 p-8 rounded-2xl border border-zinc-800/60 shadow-2xl">
+                    <h3 class="text-lg font-semibold text-white mb-6 uppercase tracking-wider text-center lg:text-left">
+                        Tech Stack</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                        <div
+                            class="flex flex-col items-center justify-center py-5 px-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500/40 transition-colors">
+                            <i class="fa-brands fa-react text-3xl text-zinc-500 mb-3"></i>
+                            <span class="text-sm font-medium text-zinc-300">React</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center py-5 px-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500/40 transition-colors">
+                            <i class="fa-brands fa-vuejs text-3xl text-zinc-500 mb-3"></i>
+                            <span class="text-sm font-medium text-zinc-300">Vue.js</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center py-5 px-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500/40 transition-colors">
+                            <i class="fa-brands fa-node-js text-3xl text-zinc-500 mb-3"></i>
+                            <span class="text-sm font-medium text-zinc-300">Node.js</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center py-5 px-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500/40 transition-colors">
+                            <i class="fa-solid fa-database text-3xl text-zinc-500 mb-3"></i>
+                            <span class="text-sm font-medium text-zinc-300">PostgreSQL</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center py-5 px-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500/40 transition-colors">
+                            <i class="fa-brands fa-css3-alt text-3xl text-zinc-500 mb-3"></i>
+                            <span class="text-sm font-medium text-zinc-300">Tailwind CSS</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center py-5 px-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:border-emerald-500/40 transition-colors">
+                            <i class="fa-solid fa-server text-3xl text-zinc-500 mb-3"></i>
+                            <span
+                                class="text-sm font-medium text-zinc-300 text-center leading-tight">Arquitectura<br>SaaS</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <!-- SECCION SOBRE MI -->
-    <section id="sobremi" class="sobremi">
-        <div class="contenido-seccion"></div>
-        <h2>SOBRE MÍ</h2>
-        <p><span>Hola, soy Juan Alfredo Zúñiga Codoceo.</span> Soy un apasionado desarrollador web comprometido con la
-            excelencia
-            y la mejora continua.<br> Mi experiencia abarca desde HTML, CSS y Javascript hasta tecnologías avanzadas
-            como React, Bootstrap y VueJS.<br>
-            Mi formación incluye una licenciatura analista web y certificaciones en FullStack Web y Front-End
-            VueJS, React.<br>
-            Estoy constantemente actualizando mis habilidades a través de certificaciones adicionales. Además de mi
-            enfoque técnico,
-            poseo habilidades en gestión de equipos y atención al cliente.<br> Como desarrollador proactivo, estoy listo
-            para abrazar nuevos desafíos
-            y colaborar en emocionantes proyectos. Mi bilingüismo en español e inglés facilita la comunicación con una
-            audiencia internacional. <br>
-            ¡Estoy emocionado por las oportunidades que el mundo del desarrollo web ofrece!</p>
-        <br>
-        <div class="fila">
-            <!--Datos personales-->
-            <div class="col">
-                <h3>Datos Personales</h3>
-                <ul>
-                    <li>
-                        <strong>Fecha Nacimiento</strong>
-                        15-04-1989
-                    </li>
-                    <li>
-                        <strong>Email</strong>
-                        zcja.89@gmail.com | juan.zuniga.c@synapsedev.cl
-                    </li>
-                    <li>
-                        <strong>Cargo</strong>
-                        <span>FREELANCE</span>
-                    </li>
-                </ul>
-                <br>
-                <button>
-                    <a href="/img/CV-Juan Zuñiga-TI.pdf" download="CV-Juan Zúñiga">Descargar CV <i
-                            class="fa-solid fa-download"></i></a>
-                    <span class="overlay"></span>
+
+    <!-- 3. SECCIÓN 'PROYECTOS' -->
+    <section id="projects" class="py-24 px-6 relative bg-zinc-950">
+        <div class="max-w-6xl mx-auto flex flex-col items-center lg:items-start relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-16 flex items-center w-full">
+                <span class="text-emerald-400 mr-3 text-2xl">02.</span> Proyectos Destacados
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full">
+                <!-- Tarjeta 1: Operia -->
+                <div class="bento-card p-8 rounded-2xl flex flex-col h-full group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500/10 transition-colors text-xl">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Operia</h3>
+                    <p class="text-zinc-400 text-sm mb-6 flex-grow leading-relaxed">
+                        Plataforma SaaS B2B para la gestión avanzada de tareas y flujos de trabajo empresariales.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-8 mt-auto">
+                        <span
+                            class="px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-400/10 rounded-full border border-emerald-500/20">FullStack
+                            JS</span>
+                        <span
+                            class="px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-400/10 rounded-full border border-emerald-500/20">Node.js</span>
+                        <span
+                            class="px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-400/10 rounded-full border border-emerald-500/20">React</span>
+                    </div>
+                    <a href="#"
+                        class="w-full text-center py-3 px-4 border border-zinc-700 hover:border-emerald-500 text-white text-sm font-medium rounded-lg hover:bg-emerald-500/10 transition-colors">
+                        Ver Demo
+                    </a>
+                </div>
+
+                <!-- Tarjeta 2: SynapseDev -->
+                <div class="bento-card p-8 rounded-2xl flex flex-col h-full group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500/10 transition-colors text-xl">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">SynapseDev</h3>
+                    <p class="text-zinc-400 text-sm mb-6 flex-grow leading-relaxed">
+                        Sitio web corporativo y plataforma de adquisición B2B de mi propia microempresa de desarrollo.
+                        Arquitectura optimizada para SEO, rendimiento y conversión de clientes.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-8 mt-auto">
+                        <span
+                            class="px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-400/10 rounded-full border border-emerald-500/20">Frontend
+                            Moderno</span>
+                        <span
+                            class="px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-400/10 rounded-full border border-emerald-500/20">Tailwind
+                            CSS</span>
+                        <span
+                            class="px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-400/10 rounded-full border border-emerald-500/20">Diseño
+                            UI/UX</span>
+                    </div>
+                    <a href="https://www.synapsedev.cl" target="_blank"
+                        class="w-full text-center py-3 px-4 border border-zinc-700 hover:border-emerald-500 text-white text-sm font-medium rounded-lg hover:bg-emerald-500/10 transition-colors">
+                        Ver Demo
+                    </a>
+                </div>
+
+                <!-- Tarjeta 3: Cato: Life OS -->
+                <div class="bento-card p-8 rounded-2xl flex flex-col h-full group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div
+                            class="w-12 h-12 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500/10 transition-colors text-xl">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Cato: Life OS</h3>
+                    <p class="text-zinc-400 text-sm mb-6 flex-grow leading-relaxed">
+                        Aplicación All-in-One de productividad y finanzas personales, integrando principios de gestión
+                        del tiempo.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-8 mt-auto">
+                        <span
+                            class="px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-400/10 rounded-full border border-emerald-500/20">React/Vue</span>
+                        <span
+                            class="px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-400/10 rounded-full border border-emerald-500/20">Node.js</span>
+                        <span
+                            class="px-3 py-1 text-xs font-semibold text-emerald-400 bg-emerald-400/10 rounded-full border border-emerald-500/20">Finanzas</span>
+                    </div>
+                    <a href="https://synapsedev.cl/cato" target="_blank"
+                        class="w-full text-center py-3 px-4 border border-zinc-700 hover:border-emerald-500 text-white text-sm font-medium rounded-lg hover:bg-emerald-500/10 transition-colors">
+                        Ver Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SECCIÓN 'CONTACTO' / FOOTER -->
+    <section id="contact" class="pt-24 pb-20 px-6 bg-zinc-900 border-t border-zinc-800 relative overflow-hidden">
+        <!-- Abstract Decoration for footer -->
+        <div
+            class="absolute left-1/2 -translate-x-1/2 bottom-0 w-[600px] h-[300px] bg-emerald-500/5 rounded-[100%] blur-[80px] pointer-events-none">
+        </div>
+
+        <div class="max-w-4xl mx-auto flex flex-col items-center relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 text-center">
+                Iniciemos un Proyecto
+            </h2>
+            <p class="text-zinc-400 text-center mb-12 max-w-xl text-lg">
+                ¿Buscas optimizar tus procesos con software a medida?
+            </p>
+
+            <form action="https://formspree.io/f/mqkvwror" method="POST"
+                class="w-full max-w-2xl bg-zinc-950/40 p-8 rounded-2xl border border-zinc-800/80 mb-16 shadow-xl backdrop-blur-sm">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-sm font-medium text-zinc-400 mb-2" for="nombre">Nombre</label>
+                        <input
+                            class="w-full bg-zinc-900 border border-zinc-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
+                            type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-zinc-400 mb-2" for="email">Email</label>
+                        <input
+                            class="w-full bg-zinc-900 border border-zinc-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors"
+                            type="email" id="email" name="_replyto" placeholder="tu@email.com" required>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-zinc-400 mb-2" for="mensaje">Mensaje</label>
+                    <textarea
+                        class="w-full bg-zinc-900 border border-zinc-800 text-white rounded-lg px-4 py-3 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-colors h-32 resize-y"
+                        id="mensaje" name="mensaje" placeholder="Describe tu proyecto..." required></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold py-3.5 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20">
+                    Enviar Mensaje <i class="fa-solid fa-paper-plane text-sm ml-1"></i>
                 </button>
-
-            </div>
-
-            <!--Intereses-->
-            <div class="col">
-                <h3>Intereses</h3>
-                <div class="contenedor-intereses">
-                    <div class="interes">
-                        <i class="fa-solid fa-gamepad"></i>
-                        <span>JUEGOS</span>
-                    </div>
-                    <div class="interes">
-                        <i class="fa-solid fa-headphones"></i>
-                        <span>MÚSICA</span>
-                    </div>
-                    <div class="interes">
-                        <i class="fa-solid fa-film"></i>
-                        <span>SERIES</span>
-                    </div>
-                    <div class="interes">
-                        <i class="fa-solid fa-futbol"></i>
-                        <span>DEPORTES</span>
-                    </div>
-                    <div class="interes">
-                        <i class="fa-solid fa-book"></i>
-                        <span>LIBROS</span>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </section>
 
-    <!-- SECCION SKILLS -->
-    <section class="skills" id="skills">
-        <div class="contenido-seccion">
-            <h2>Skills</h2>
-            <div class="fila">
-                <!-- Technical Skills-->
-                <div class="col">
-                    <div class="skill">
-                        <i class="fab fa-js-square"></i>
-                        <span>Javascript</span>
-                    </div>
-
-                    <div class="skill">
-                        <i class="fa-brands fa-html5"></i>
-                        <span>HTML</span>
-                    </div>
-
-                    <div class="skill">
-                        <i class="fa-brands fa-css3-alt"></i>
-                        <span>CSS</span>
-                    </div>
-
-                    <div class="skill">
-                        <i class="fa-brands fa-react"></i>
-                        <span>REACT</span>
-                    </div>
-
-                    <div class="skill">
-                        <i class="fa-brands fa-vuejs"></i>
-                        <span>VUEJS</span>
-                    </div>
-
-                    <div class="skill">
-                        <i class="fa-brands fa-wordpress-simple"></i>
-                        <span>WORDPRESS</span>
-                    </div>
-
-                    <div class="skill">
-                        <i class="fa-brands fa-git"></i>
-                        <span>GIT</span>
-                    </div>
-                </div>
-
+    <!-- FOOTER -->
+    <footer class="bg-zinc-950 border-t border-zinc-900 py-10 px-6 mt-auto">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex gap-5">
+                <a href="https://www.linkedin.com/in/juan-alfredo-zuniga-codoceo/" target="_blank"
+                    class="text-zinc-500 hover:text-white transition-colors text-xl">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/Juan-Zuniga-Codoceo" target="_blank"
+                    class="text-zinc-500 hover:text-white transition-colors text-xl">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.synapsedev.cl" target="_blank"
+                    class="text-zinc-500 hover:text-emerald-400 transition-colors text-xl flex items-center gap-2 font-semibold">
+                    <i class="fa-solid fa-bolt"></i> <span class="text-sm tracking-tight">www.synapsedev.cl</span>
+                </a>
             </div>
-        </div>
-    </section>
 
-    <!--SECCION CURRICULUM-->
-    <section id="curriculum" class="curriculum">
-        <div class="contenido-seccion">
-            <h2>Curriculum</h2>
-            <div class="fila">
-                <div class="col izquierda">
-                    <h3>Educación</h3>
-                    <div class="item izq">
-                        <h4>Desarrollo Full Stack Traine</h4>
-                        <span class="casa">Desafio Latam</span>
-                        <span class="fecha">Febrero 2024 - Agosto 2024</span>
-                        <p><b>Este programa intensivo de 472 horas</b> se enfoca en el desarrollo de habilidades para la
-                            creación de aplicaciones web desde el backend y el frontend,
-                            utilizando tecnologías esenciales como <b>HTML, CSS y JavaScript, postgress, nodeJs, React</b> A lo largo de 9
-                            módulos, abarca desde los fundamentos del
-                            desarrollo front-end hasta la programación en JavaScript y el desarrollo web desde el backend y el frontend.</b><br>
-                            El objetivo principal es capacitar a los estudiantes para desarrollar aplicaciones web que
-                            satisfagan las necesidades organizativas,
-                            aplicando las mejores prácticas de la industria para garantizar la calidad del producto
-                            final.</p>
-                        <div class="conectori">
-                            <div class="circuloi"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="item izq">
-                        <h4>Desarrollo de Aplicaciones Front-End Trainee v2.0</h4>
-                        <span class="casa">Edutecno</span>
-                        <span class="fecha">Marzo 2023 - Agosto 2023</span>
-                        <p><b>Este programa intensivo de 438 horas</b> se enfoca en el desarrollo de habilidades para la
-                            creación de aplicaciones web desde el lado del cliente,
-                            utilizando tecnologías esenciales como <b>HTML, CSS y JavaScript.</b> A lo largo de 9
-                            módulos, abarca desde los fundamentos del
-                            desarrollo front-end hasta la programación en JavaScript y la construcción de interfaces
-                            interactivas con el <b>framework Vue.</b><br>
-                            El objetivo principal es capacitar a los estudiantes para desarrollar aplicaciones web que
-                            satisfagan las necesidades organizativas,
-                            aplicando las mejores prácticas de la industria para garantizar la calidad del producto
-                            final.</p>
-                        <div class="conectori">
-                            <div class="circuloi"></div>
-                        </div>
-                    </div>
-
-                    <div class="item izq">
-                        <h4>Desarrollo FullStack Oracle One</h4>
-                        <span class="casa">Alura, Oracle One</span>
-                        <span class="fecha">Agosto 2022 - Febrero 2023</span>
-                        <p>Durante mi tiempo en Oracle One, completé un bootcamp que abarcó varias áreas clave:
-                            <br>
-                            <b>Principiante en Programación G3:</b> Aprendí lógica de programación, desarrollo web con
-                            HTML, CSS, y herramientas como Git y GitHub.<br>
-                            <b>Front End G3:</b> Me sumergí en tecnologías de Front-End avanzadas, incluyendo Flexbox,
-                            CSS Grid y JavaScript para crear aplicaciones web.<br>
-                            <b>Emprendimiento G3:</b> Adquirí conocimientos en emprendimiento, desde la concepción de
-                            una idea hasta la elaboración de un plan de negocios.<br>
-                            <b>Desarrollo Personal G3:</b> Desarrollé habilidades personales, como la optimización de mi
-                            perfil de LinkedIn, enfoque y gestión del tiempo.<br>
-                            <b>Programación:</b> Obtuve una sólida base en programación Java, que abarcó conceptos de
-                            orientación a objetos y manejo de bases de datos.<br>
-                            Este bootcamp en Oracle One fortaleció mi perfil como desarrollador junior y me preparó para
-                            enfrentar desafíos en la industria de la tecnología.
-                        </p>
-                        <div class="conectori">
-                            <div class="circuloi"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col derecha">
-                    <h3>Experiencia</h3>
-                    <div class="item der">
-                        <h4>FullStackDeveloper </h4>
-                        <span class="casa">FREELANCE</span>
-                        <span class="fecha">Agosto 2022 - Actualmente</span>
-                        <p><b>Desarrollo Synapse Dev(React)</b>
-                            <b>Descripción:</b> Soy el creador de Synapse Dev una agencia de desarrollo web orientada a ofrecer soluciones modernas y personalizadas para el cliente,
-                            desarrollada en React<br>
-                        </p>
-                        <div class="conectord">
-                            <div class="circulod"></div>
-                        </div>
-                    </div>
-                    <div class="item der">
-                        <h4>FullStackDeveloper </h4>
-                        <span class="casa">FREELANCE</span>
-                        <span class="fecha">Agosto 2022 - Actualmente</span>
-                        <p>
-                            <b>Desarrollo de pizzeria (React)</b>
-                            <b>Descripción:</b> Fui el desarrollador de una web para una pizzeria, donde se ve un menú, tiene carrito de compras y se puede hacer pedidos. Ademas de tener un diseño estetico y moderno<br>
-                            
-                        </p>
-                        <div class="conectord">
-                            <div class="circulod"></div>
-                        </div>
-                    </div>
-                    <div class="item der">
-                        <h4>FullStackDeveloper </h4>
-                        <span class="casa">FREELANCE</span>
-                        <span class="fecha">Agosto 2022 - Actualmente</span>
-                        <p>
-                            <b>Desarrollo landing page Abogado Andrés González (React)</b>
-                            <b>Descripción:</b> Desarrollador de una landing page creada con React para un abogado.
-                            Estos proyectos demostraron mi habilidad para desarrollar aplicaciones web atractivas y
-                            funcionales utilizando
-                            tecnologías modernas como Vue.js, React y Wordpress.
-                        </p>
-                        <div class="conectord">
-                            <div class="circulod"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--SECCION PORTFOLIO-->
-    <section id="portfolio" class="portfolio">
-        <div class="contenido-seccion">
-            <h2>PORTFOLIO</h2>
-            <div class="galeria">
-                <!-- Primer proyecto -->
-                <div class="proyecto-contenedor">
-                    <a href="https://www.synapsedev.cl/" target="_blank">
-                        <div class="proyecto">
-                            <img src="img/synapse dev.png" alt="">
-                            <div class="overlay">
-                                <h3>SYNAPSE DEV</h3>
-                                <p>JS, HTML, CSS, REACT</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="botones">
-                        <a href="https://www.synapsedev.cl/" target="_blank" class="boton">
-                            <span class="texto">Sitio Web</span>
-                            <span class="overlay"></span>
-                        </a>
-                        <a href="https://github.com/Juan-Zuniga-Codoceo/Synapse-Dev" target="_blank" class="boton">
-                            <span class="texto">GitHub</span>
-                            <span class="overlay"></span>
-                        </a>
-                    </div>
-                </div>
-                <!-- Segundo proyecto -->
-                <div class="proyecto-contenedor">
-                    <a href="https://synapsedev-pizzeria.netlify.app/" target="_blank">
-                        <div class="proyecto">
-                            <img src="img/pizzeria.png" alt="">
-                            <div class="overlay">
-                                <h3>PIZZERIA REACT</h3>
-                                <p>HTML,CSS,JS,REACT</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="botones">
-                        <a href="https://synapsedev-pizzeria.netlify.app/" target="_blank" class="boton">
-                            <span class="texto">Sitio Web</span>
-                            <span class="overlay"></span>
-                        </a>
-                        <a href="https://github.com/Juan-Zuniga-Codoceo/To-do-list-react" target="_blank" class="boton">
-                            <span class="texto">GitHub</span>
-                            <span class="overlay"></span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Tercer proyecto -->
-                <div class="proyecto-contenedor">
-                    <a href="https://synapsedev-abogados.netlify.app/"" target="_blank">
-                        <div class="proyecto">
-                            <img src="img/estudio juridico.png" alt="">
-                            <div class="overlay">
-                                <h3>LANDING PAGE/h3>
-                                <p>HTML, CSS, JS, REACT</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="botones">
-                        <a href="https://synapsedev-abogados.netlify.app/" target="_blank" class="boton">
-                            <span class="texto">Sitio Web</span>
-                            <span class="overlay"></span>
-                        </a>
-                        <a href="https://github.com/Juan-Zuniga-Codoceo/web-abogados.github.io" target="_blank"
-                            class="boton">
-                            <span class="texto">GitHub</span>
-                            <span class="overlay"></span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--SECCION CONTACTO-->
-    <section id="contacto" class="contacto">
-        <div class="contenido-seccion">
-            <h2>CONTACTO</h2>
-            <div class="fila">
-                <!--FORMULARIO-->
-                <form action="https://formspree.io/f/mqkvwror" method="POST">
-                    <div class="col">
-                        <input type="text" name="nombre" placeholder="Nombre">
-                        <input type="tel" name="telefono" placeholder="Teléfono">
-                        <input type="email" name="_replyto" placeholder="Email">
-                        <input type="text" name="tema" placeholder="Tema">
-                        <textarea name="mensaje" id="" cols="30" rows="10" placeholder="Mensaje"></textarea>
-                        <button type="submit">
-                            Enviar Mensaje <i class="fa-solid fa-paper-plane"></i>
-                            <span class="overlay"></span>
-                        </button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </section>
-
-    <!--FOOTER-->
-    <footer>
-        <a href="#inicio" class="arriba">
-            <i class="fa-solid fa-angles-up"></i>
-        </a>
-        <div class="redes">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#"><i class="fa-brands fa-github"></i></a>
-            <a href="#"><i class="fa-solid fa-rss"></i></a>
+            <p class="text-zinc-500 text-sm">
+                &copy; 2026 Juan Zúñiga C. - SynapseDev. Todos los derechos reservados.
+            </p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
 </body>
 
 </html>
