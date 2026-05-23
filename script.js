@@ -1,43 +1,68 @@
-let menuVisible = false;
-//Función que oculta o muestra el menu
-function mostarOcultarMenu(){
-    if(menuVisible){
-    document.getElementById("nav").classList ="";
-    menuVisible = false;
-    }else{
-        document.getElementById("nav").classList ="responsive";
-        menuVisible = true;
+// script.js - Portfolio Interactive Logic & Animations
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // Close menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("hidden");
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.add("hidden");
+            }
+        });
     }
-}
 
-function seleccionar(){
-    //oculta el menu una vez que selecciona una opcion
-    document.getElementById("nav").classList = "";
-    menuVisible = false;
-}
-//Funcion que aplica las animaciones de las habilidades
-function efectoHabilidades(){
-    var skills = document.getElementById("skills");
-    var distancia_skills = window.innerHeight - skills.getBoundingClientRect().top;
-    if(distancia_skills >= 300){
-        let habilidades = document.getElementsByClassName("progreso");
-        habilidades[0].classList.add("javascript");
-        habilidades[1].classList.add("html&css");
-        habilidades[2].classList.add("react");
-        habilidades[3].classList.add("vue");
-        habilidades[4].classList.add("wordpress");
-        habilidades[5].classList.add("git");
-        habilidades[6].classList.add("office");
-        habilidades[7].classList.add("comunicacion");
-        habilidades[8].classList.add("trabajo");
-        habilidades[9].classList.add("responsabilidad");
-        habilidades[10].classList.add("proactividad");
-        habilidades[11].classList.add("aprendizaje");
+    // 2. Scroll Animation Trigger using Intersection Observer
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if (revealElements.length > 0) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                    // Stop observing once animated to improve performance
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15, // Trigger when 15% of element is visible
+            rootMargin: "0px 0px -50px 0px" // Offset triggering slightly before entering screen
+        });
+
+        revealElements.forEach(el => {
+            revealObserver.observe(el);
+        });
     }
-}
 
+    // 3. Smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
 
-//detecta el scrolling para aplicar la animacion de la barra de habilidades
-window.onscroll = function(){
-    efectoHabilidades();
-}
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        });
+    });
+});
