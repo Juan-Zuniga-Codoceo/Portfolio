@@ -63,6 +63,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     block: "start"
                 });
             }
+        });
+    });
+
     // 4. Subtle 3D Tilt Effect for Project Cards
     const tiltCards = document.querySelectorAll(".tilt-card");
     tiltCards.forEach(card => {
