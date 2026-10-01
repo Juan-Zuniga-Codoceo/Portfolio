@@ -63,6 +63,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     block: "start"
                 });
             }
+    // 4. Subtle 3D Tilt Effect for Project Cards
+    const tiltCards = document.querySelectorAll(".tilt-card");
+    tiltCards.forEach(card => {
+        card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Calculate rotation between -3 and 3 degrees
+            const rotateX = ((y / rect.height) - 0.5) * -6;
+            const rotateY = ((x / rect.width) - 0.5) * 6;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            card.style.transition = "none";
+        });
+        
+        card.addEventListener("mouseleave", () => {
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
+            card.style.transition = "transform 0.5s ease-out";
         });
     });
 });
